@@ -17,6 +17,10 @@ var UserSchema = new mongoose_1["default"].Schema({
     password: {
         type: String,
         required: true
+    },
+    userid: {
+        type: String,
+        required: true
     }
 });
 var UserModel = mongoose_1["default"].model('users', UserSchema);
@@ -24,5 +28,6 @@ exports["default"] = UserModel;
 exports.UserValidation = joi_1["default"].object({
     username: joi_1["default"].string().required(),
     email: joi_1["default"].string().email().required(),
-    password: joi_1["default"].string().required()
+    password: joi_1["default"].string().required(),
+    userid: joi_1["default"].string().required()
 });

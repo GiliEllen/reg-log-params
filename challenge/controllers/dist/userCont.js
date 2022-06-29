@@ -38,6 +38,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 exports.__esModule = true;
 exports.userRegister = exports.userLogin = void 0;
 var usermodels_1 = require("../models/usermodels");
+var helpers_1 = require("../helpers");
 function userLogin(req, res) {
     return __awaiter(this, void 0, void 0, function () {
         var _a, username, email, password, error, user, error_1;
@@ -56,7 +57,7 @@ function userLogin(req, res) {
                         res.send({ login: false });
                     }
                     else {
-                        res.send({ login: true });
+                        res.send({ login: true, user: user, : .userid });
                     }
                     return [3 /*break*/, 3];
                 case 2:
@@ -71,16 +72,17 @@ function userLogin(req, res) {
 exports.userLogin = userLogin;
 function userRegister(req, res) {
     return __awaiter(this, void 0, void 0, function () {
-        var _a, email, username, password, error, user, error_2;
+        var _a, email, username, password, userid, error, user, error_2;
         return __generator(this, function (_b) {
             switch (_b.label) {
                 case 0:
                     _b.trys.push([0, 2, , 3]);
                     _a = req.body, email = _a.email, username = _a.username, password = _a.password;
-                    error = usermodels_1.UserValidation.validate({ username: username, email: email, password: password }).error;
+                    userid = helpers_1["default"]();
+                    error = usermodels_1.UserValidation.validate({ username: username, email: email, password: password, userid: userid }).error;
                     if (error)
                         throw error;
-                    user = new usermodels_1["default"]({ username: username, email: email, password: password });
+                    user = new usermodels_1["default"]({ username: username, email: email, password: password, userid: userid });
                     return [4 /*yield*/, user.save()];
                 case 1:
                     _b.sent();

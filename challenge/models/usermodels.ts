@@ -17,6 +17,10 @@ const UserSchema = new mongoose.Schema({
     password:{
         type:String,
         required:true
+    },
+    userid:{
+        type:String,
+        required:true 
     }
 })
 
@@ -27,5 +31,6 @@ export default UserModel;
 export const UserValidation = Joi.object({
     username:Joi.string().required(),
     email:Joi.string().email().required(),
-    password:Joi.string().required()
+    password:Joi.string().required(),
+    userid:Joi.string().required()
 })
